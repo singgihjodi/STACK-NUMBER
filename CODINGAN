@@ -4,4 +4,24 @@
 #1717051051 - Patar Martua Doli Siahaan
 
 #include<iostream>
-#include<cstdblib>
+
+
+char a[100];
+char word;
+int b=0;
+void push()
+{
+	b++;
+	a[b]= word;
+		
+}
+
+void pop()
+{
+	word= a[b];
+	b--;
+}
+int main()
+{
+	
+}
