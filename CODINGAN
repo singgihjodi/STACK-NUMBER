@@ -7,9 +7,16 @@
 
 
 
+/* STACK-NUMBER
+1717051013 - Singgih Jodi Prayoga
+1717051022 - Putri Febriana
+1717051051 - Patar Martua Doli Siahaan
+1757051008 - Ilham Maulidan
+*/
+
 #include <iostream>
 using namespace std;
-#define n 100 
+#define n 69 
 
 class Stack
 {
@@ -50,7 +57,16 @@ public:
 		else {top--;}	
 	} 
 
-	
+	void clearspace ()
+	{
+		 for(int i=0;data[i];i++){
+		while(data[i] == ' '){
+			for(int j=i;data[j];j++){
+				data[j] = data[j+1];
+				}
+				}
+			}
+	}
 
 	void Print() {
 		int i;
@@ -88,7 +104,7 @@ int tOperand(char op){
 	}
 
 int hasil(int A,char C,int B){
-	int hasil;
+	double hasil;
 	if(C == '+'){
 		hasil = B+A;
 		}
@@ -101,7 +117,7 @@ int hasil(int A,char C,int B){
 	else if(C == '/'){
 		hasil = B/A;
 		}
-	return (int)hasil;
+	return (double)hasil;
 	}
 	
 	
@@ -114,14 +130,9 @@ int main()
    				 getline(cin,data);
   
     //Ngilangin spasi==============
-    for(int i=0;data[i];i++){
-		while(data[i] == ' '){
-			for(int j=i;data[j];j++){
-				data[j] = data[j+1];
-				}
-				}
-			}
-    
+   
+    S.clearspace();
+	
     string P;
     
     for(int i=0;data[i];i++){
@@ -163,9 +174,11 @@ int main()
 			char tmp = S.Top();
 				P+=tmp;
 				S.Pop();
+				
+				
 			}
 
-
+		cout<<"bentuk Postfix :";
 		cout<<P<<endl;
 		
 		for(int i=0;P[i];i++){
