@@ -6,89 +6,6 @@
 */
 
 #include <iostream>
-#define MAX 10
-using namespace std;
-
-struct Stack {
-	char top;
-	char data[MAX];
-}
-temp;
-
-void init(){
-	temp.top = -1;   //inisialisasi kepala dari stack,prinsip FILO
-}
-
-int checkkosong() {
-  return temp.top == -1;
-}
-
-int checkpenuh() {
-	return temp.top == MAX-1;
-}
-
-void push() {
-   if (checkpenuh()) {
-		cout << "\ntemp penuh"<<endl;
-	}
-	else {
-    temp.top++;
-  //  cout << "\nMasukkan data = "; 
-	
-   
-	}
-}
-
-void pop() {
-	if (checkkosong()) {
-		cout << "\nData kosong\n"<<endl;
-	}
-	else {
-    cout << "\nData "<<temp.data[temp.top]<<" sudah terambil"<<endl;
-    temp.top--;
-	}
-}
-
-void printStack() {
-	if (checkkosong()) {
-		cout << "temp kosong";
-	}
-	else {
-    cout << "\ntemp : ";
-		for (int i = temp.top; i >= 0; i--)
-			cout << temp.data[i] << ((i == 0) ? "" : ",");
-	}
-}
-
-int main() {
-	int pilihan, data;
-	init();
-	do {
-    printStack();
-		cout << "\n1. Input (Push)\n"
-        <<"2. Hapus (Pop)\n"
-        <<"3. Keluar\n"
-        <<"Masukkan Pilihan: ";
-		cin >> pilihan;
-		switch (pilihan)
-		{
-		case 1:
-			push();
-			cin >> temp.data[temp.top];
-			break;
-		case 2:
-			pop();
-			break;
-		default:
-      cout << "Pilihan tidak tersedia" << endl;
-			break;
-		}
-	} while (pilihan!=3);
-	
-		cerr<<"apa ";
-	}
-
-/* #include <iostream>
 using namespace std;
 #define n 69 
 
@@ -113,22 +30,20 @@ public:
 		if(top == -1) return 1;
 		else return 0;
 	}
-	int Push(int x) 
+	void Push(int x) 
 	{
 	  if(top == n-1) {
 			cout<<"Stuck Penuh";
-			return 0;
 		}
 		else {data[++top] = x;
-		return x;}
+		}
 	}
  
 
-	int Pop() 
+	void Pop() 
 	{
 		if(top == -1) {
 			cout<<"Stuck Kosong";
-			return 0;
 		}
 		else {top--;}	
 	} 
@@ -170,11 +85,40 @@ int tOperand(char op){
 	return 0;
 	}
 
+int hasil(int A,char C,int B){
+	int hasil;
+	if(C == '+'){
+		hasil = B+A;
+		}
+	else if(C == '-'){
+		hasil = B-A;
+		}
+	else if(C == '*'){
+		hasil = B*A;
+		}
+	else if(C == '/'){
+		hasil = B/A;
+		}
+	return (int)hasil;
+	}
+	
+	
+
 int main()
 {	
 	Stack S;
     string data;
-    cin>>data;
+    getline(cin,data);
+    
+    //Ngilangin spasi==============
+    for(int i=0;data[i];i++){
+		while(data[i] == ' '){
+			for(int j=i;data[j];j++){
+				data[j] = data[j+1];
+				}
+				}
+			}
+    
     string P;
     
     for(int i=0;data[i];i++){
@@ -202,7 +146,7 @@ int main()
 			S.Push(data[i]);}
 		
 		else{
-			while (S.IsEmpty() == 0 && S.Top() != '(' && tPrecedence(data[i]) <= tPrecedence(S.Top())){
+			while (S.Top() != '(' && tPrecedence(data[i]) <= tPrecedence(S.Top())){
 				char tmp = S.Top();
 				P+=tmp;
 				S.Pop();
@@ -210,6 +154,7 @@ int main()
 			S.Push(data[i]);
 			}
     
+		}
 	}
 		while(S.IsEmpty() == 0){
 			char tmp = S.Top();
@@ -218,7 +163,23 @@ int main()
 			}
 
 
+		cout<<P<<endl;
 		
-}for(int i=0;P[i];i++){
-			cout<<P[i]<<" ";}}
-*/
+		for(int i=0;P[i];i++){
+			if(tOperand(P[i]) == 1){
+				S.Push(P[i]);
+				}
+				
+			else if(tOperator(P[i]) == 1){
+				int A,B;
+				A = S.Top()-'0';S.Pop();
+				B = S.Top()-'0';S.Pop();
+				S.Push(hasil(A,P[i],B));
+				}	
+				
+			}
+		int hasilakhir = S.Top();
+		cout<<endl<<(int)hasilakhir;
+		
+		
+		}
