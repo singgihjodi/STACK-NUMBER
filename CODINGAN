@@ -5,64 +5,88 @@
 #1757051008 - Ilham Maulidan
 
 
-#include<iostream>
-#include<cstring>
-#define MAX 20;
+#include <iostream>
+#define MAX 10
 using namespace std;
 
-/*char stack[100];
-char x[100];
-
-int main()
-{
-	cout<<"input expression;";
-		cin>>x;
-		cout<<endl;
-			cout<<"\n";
-	for(int a=0;a<=strlen(x);a++)
-	{
-		
-		if (x[a]==1)
-		{
-			cout<<" \n";
-		}
-		else
-		{
-			cout<<x[a]<<" ";
-		}
-			
-					
-	}
-				
-	
-} */
-class stack
-{
-	public :
-	int head;
-	data[MAX];
+struct Stack {
+	char top;
+	char data[MAX];
 }
-tmp;
+temp;
+
 void init(){
-	tmp.head = -1;
+	temp.top = -1;   //inisialisasi kepala dari stack,prinsip FILO
 }
 
-bool isEmpty() {
-  return tmp.head == -1;
+int checkkosong() {
+  return temp.top == -1;
 }
 
-bool isFull() {
-	return tmp.head == MAX-1;
+int checkpenuh() {
+	return temp.top == MAX-1;
 }
+
 void push() {
-   if (isFull()) {
-		cout << "\nTumpukan penuh"<<endl;
+   if (checkpenuh()) {
+		cout << "\ntemp penuh"<<endl;
 	}
 	else {
-   		tmp.head++;
-    		cout << "\nMasukkan data = "; cin >> tmp.data[tmp.head];
-    				cout << "Data " << tmp.data[tmp.head] << " masuk ke stack"<<endl;
+    temp.top++;
+  //  cout << "\nMasukkan data = "; 
+	
+   
 	}
 }
+
+void pop() {
+	if (checkkosong()) {
+		cout << "\nData kosong\n"<<endl;
+	}
+	else {
+    cout << "\nData "<<temp.data[temp.top]<<" sudah terambil"<<endl;
+    temp.top--;
+	}
+}
+
+void printStack() {
+	if (checkkosong()) {
+		cout << "temp kosong";
+	}
+	else {
+    cout << "\ntemp : ";
+		for (int i = temp.top; i >= 0; i--)
+			cout << temp.data[i] << ((i == 0) ? "" : ",");
+	}
+}
+
+int main() {
+	int pilihan, data;
+	init();
+	do {
+    printStack();
+		cout << "\n1. Input (Push)\n"
+        <<"2. Hapus (Pop)\n"
+        <<"3. Keluar\n"
+        <<"Masukkan Pilihan: ";
+		cin >> pilihan;
+		switch (pilihan)
+		{
+		case 1:
+			push();
+			cin >> temp.data[temp.top];
+			break;
+		case 2:
+			pop();
+			break;
+		default:
+      cout << "Pilihan tidak tersedia" << endl;
+			break;
+		}
+	} while (pilihan!=3);
+	
+		cerr<<"apa ";
+	}
+
 
 
