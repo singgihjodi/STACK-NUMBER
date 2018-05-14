@@ -88,5 +88,9 @@ int main() {
 		cerr<<"apa ";
 	}
 
+string infixToPostifix(){
+	
 
+
+}
 
