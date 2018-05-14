@@ -5,9 +5,11 @@
 1757051008 - Ilham Maulidan
 */
 
+
+
 #include <iostream>
 using namespace std;
-#define n 69 
+#define n 100 
 
 class Stack
 {
@@ -108,8 +110,9 @@ int main()
 {	
 	Stack S;
     string data;
-    getline(cin,data);
-    
+    	cout<<"input data  berupa infix :";
+   				 getline(cin,data);
+  
     //Ngilangin spasi==============
     for(int i=0;data[i];i++){
 		while(data[i] == ' '){
